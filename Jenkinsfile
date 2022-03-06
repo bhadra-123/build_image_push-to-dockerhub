@@ -17,11 +17,11 @@ pipeline {
       }
     }
 
-//     stage('Build') {
-//       steps {
-//         sh 'docker build -t darinpope/dp-alpine:latest .'
-//       }
-//     }
+    stage('Build') {
+      steps {
+        sh 'docker build -t darinpope/dp-alpine:latest .'
+      }
+    }
 //
 //     stage('Login') {
 //       steps {
