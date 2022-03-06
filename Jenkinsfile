@@ -20,7 +20,7 @@ pipeline {
 
     stage('Build') {
       steps {
-        sh 'docker build -t darinpope/dp-alpine:latest .'
+        sh 'docker build -t bhadra-123/dp-alpine:latest .'
       }
     }
 //
