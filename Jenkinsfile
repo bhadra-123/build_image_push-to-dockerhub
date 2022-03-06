@@ -23,18 +23,18 @@ pipeline {
         sh 'docker build -t bhadra-123/dp-alpine:latest .'
       }
     }
-//
-//     stage('Login') {
-//       steps {
-//         sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-//       }
-//     }
-//
-//     stage('Push') {
-//       steps {
-//         sh 'docker push darinpope/dp-alpine:latest'
-//       }
-//     }
+
+    stage('Login') {
+      steps {
+        sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+      }
+    }
+
+    stage('Push') {
+      steps {
+        sh 'docker push bhadra-123/dp-alpine:latest'
+      }
+    }
 
   }
 
