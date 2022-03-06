@@ -27,15 +27,16 @@ pipeline {
       steps {
         withCredentials([usernamePassword(credentialsId: 'DOCKERHUB_PAT', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
           sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
+          sh 'docker push bhadra-123/dp-alpine:latest'
         }
       }
     }
 
-    stage('Push') {
-      steps {
-        sh 'docker push bhadra-123/dp-alpine:latest'
-      }
-    }
+//     stage('Push') {
+//       steps {
+//         sh 'docker push bhadra-123/dp-alpine:latest'
+//       }
+//     }
 
   }
 
