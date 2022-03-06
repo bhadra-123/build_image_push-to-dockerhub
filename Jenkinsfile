@@ -11,13 +11,6 @@ pipeline {
 
   stages {
 
-    stage('Env') {
-      steps {
-        sh 'printenv'
-        sh 'ls -l /var/run/docker.sock'
-      }
-    }
-
     stage('Build') {
       steps {
         sh 'docker build -t bhadra-123/dp-alpine:latest .'
