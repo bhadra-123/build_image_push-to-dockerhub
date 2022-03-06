@@ -14,6 +14,7 @@ pipeline {
     stage('Env') {
       steps {
         sh 'printenv'
+        sh 'ls -l /var/run/docker.sock'
       }
     }
 
