@@ -18,13 +18,19 @@ pipeline {
     }
 
     stage('Login') {
-      steps {
-        withCredentials([usernamePassword(credentialsId: 'DOCKERHUB_PAT', passwordVariable: 'DOCKERHUB_CREDENTIALS_PSW', usernameVariable: 'DOCKERHUB_CREDENTIALS_USR')]) {
-          sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-          //sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
+        steps {
+            sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
         }
-      }
     }
+
+//     stage('Login') {
+//       steps {
+//         withCredentials([usernamePassword(credentialsId: 'DOCKERHUB_PAT', passwordVariable: 'DOCKERHUB_CREDENTIALS_PSW', usernameVariable: 'DOCKERHUB_CREDENTIALS_USR')]) {
+//           sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+//           //sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
+//         }
+//       }
+//     }
 
     stage('Push') {
       steps {
