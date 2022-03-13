@@ -132,7 +132,7 @@ pipeline {
 
     stage('Build') {
       steps {
-        sh 'docker build -t bhadra1234/dp-alpine:$BUILD_NUMBER'
+        sh 'docker build -t dp-alpine:$BUILD_NUMBER'
       }
     }
 
