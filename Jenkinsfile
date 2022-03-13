@@ -13,7 +13,7 @@ pipeline {
 
     stage('Build') {
       steps {
-        sh 'docker build -t bhadra-123/dp-alpine:latest .'
+        sh 'docker build -t bhadra1234/dp-alpine:latest .'
       }
     }
 
@@ -33,7 +33,7 @@ pipeline {
 
     stage('Push') {
       steps {
-        sh 'docker push bhadra-123/dp-alpine:latest'
+        sh 'docker push bhadra1234/dp-alpine:latest'
       }
     }
 
