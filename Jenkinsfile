@@ -1,3 +1,7 @@
+//////////////////////////
+// Working Pipeline-1 ///
+////////////////////////
+/*
 pipeline { 
 
     environment { 
@@ -67,9 +71,52 @@ pipeline {
         } 
 
     }
-}
+} */
 
 /*
+pipeline {
+  agent any
+ 
+ stages {
+  stage('Docker Build and Tag') {
+           steps {
+              
+                sh 'docker build -t nginxtest:latest .' 
+                sh 'docker tag nginxtest nikhilnidhi/nginxtest:latest'
+                sh 'docker tag nginxtest nikhilnidhi/nginxtest:$BUILD_NUMBER'
+               
+          }
+        }
+     
+  stage('Publish image to Docker Hub') {
+          
+            steps {
+        withDockerRegistry([ credentialsId: "dockerHub", url: "" ]) {
+          sh  'docker push nikhilnidhi/nginxtest:latest'
+          sh  'docker push nikhilnidhi/nginxtest:$BUILD_NUMBER' 
+        }
+                  
+          }
+        }
+     
+      stage('Run Docker container on Jenkins Agent') {
+             
+            steps {
+                sh "docker run -d -p 4030:80 nikhilnidhi/nginxtest"
+ 
+            }
+        }
+ stage('Run Docker container on remote hosts') {
+             
+            steps {
+                sh "docker -H ssh://jenkins@172.31.28.25 run -d -p 4001:80 nikhilnidhi/nginxtest"
+ 
+            }
+        }
+    }
+}*/
+
+
 pipeline {
   agent any
 
@@ -85,7 +132,7 @@ pipeline {
 
     stage('Build') {
       steps {
-        sh 'docker build -t ./Dockerfile'
+        sh 'docker build -t bhadra1234/dp-alpine:$BUILD_NUMBER'
       }
     }
 
@@ -105,7 +152,7 @@ pipeline {
 
     stage('Push') {
       steps {
-        sh 'docker push bhadra1234/dp-alpine:latest'
+        sh 'docker push bhadra1234/dp-alpine:$BUILD_NUMBER'
       }
     }
 
@@ -118,4 +165,3 @@ pipeline {
   }
 
 }
-*/
